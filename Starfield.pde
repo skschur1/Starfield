@@ -1,7 +1,7 @@
 //your code here
 void setup()
 {
-	//your code here
+	size(400,400);
 }
 void draw()
 {
@@ -9,7 +9,26 @@ void draw()
 }
 class NormalParticle
 {
-	//your code here
+	int size, pColor;
+	double pX, pY, pAngle, pSpeed;
+	NormalParticle(int s, int c, double x, double y, double angle, double speed)
+	{
+		size = s;
+		pColor = c;
+		pX = x;
+		pY = y;
+		pAngle = angle;
+		pSpeed = speed;
+	}
+	void show()
+	{
+		fill(pColor);
+		ellipse(pX, pY, size, size);
+	}
+	void move()
+	{
+
+	}
 }
 interface Particle
 {
