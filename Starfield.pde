@@ -1,33 +1,38 @@
-//your code here
+NormalParticle bob;
 void setup()
 {
-	size(400,400);
+	size(600,600);
+	bob = new NormalParticle(5,5,5);
 }
 void draw()
 {
-	//your code here
+	background(0);
+	bob.move();
+	bob.show();
+
 }
 class NormalParticle
 {
 	int size, pColor;
 	double pX, pY, pAngle, pSpeed;
-	NormalParticle(int s, int c, double x, double y, double angle, double speed)
+	NormalParticle(int s, double angle, double speed)
 	{
 		size = s;
-		pColor = c;
-		pX = x;
-		pY = y;
-		pAngle = angle;
+		pColor = color((int)(Math.random() * 55) + 200);
+		pX = 300;
+		pY = 300;
+		pAngle = Math.PI * 2 * Math.random();
 		pSpeed = speed;
 	}
 	void show()
 	{
 		fill(pColor);
-		ellipse(pX, pY, size, size);
+		ellipse((float)pX, (float)pY, size, size);
 	}
 	void move()
 	{
-
+		pX = pX + Math.sin(pAngle) * pSpeed;
+		pY = pY + Math.cos(pAngle) * pSpeed;
 	}
 }
 interface Particle
