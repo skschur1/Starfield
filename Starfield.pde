@@ -2,7 +2,7 @@ NormalParticle bob;
 void setup()
 {
 	size(600,600);
-	bob = new NormalParticle(5,5,5);
+	bob = new NormalParticle(2,5,0.15);
 }
 void draw()
 {
@@ -18,7 +18,7 @@ class NormalParticle
 	NormalParticle(int s, double angle, double speed)
 	{
 		size = s;
-		pColor = color((int)(Math.random() * 55) + 200);
+		pColor = color((int)(Math.random() * 155) + 100);
 		pX = 300;
 		pY = 300;
 		pAngle = Math.PI * 2 * Math.random();
