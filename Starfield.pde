@@ -48,7 +48,7 @@ class NormalParticle
 }
 interface Particle
 {
-	//your code here
+
 }
 class OddballParticle //uses an interface
 {
@@ -65,16 +65,18 @@ class OddballParticle //uses an interface
 	}
 	void show()
 	{
+		/*
 		beginShape();
-			vertex(oX + (size * 2), oY);
-			vetex(oX + (size * 1), oY + ( size * 1));
-			vertex(oX, oY + (size * 2));
-			vertex(oX - (size * 3), oY + ( size * 3));
-			vertex(oX - (size * 2), oY);
-			vertex(oX - (size*2), oY - (size*2));
-			vertex(oX, oY - (size*2));
-			vertex(oX + (size * 2), oY);
+			vertex((int)oX + (size * 2), (int)oY);
+			vetex((int)(oX + (size * 1)), (int)(oY + ( size * 1)));
+			vertex((int)oX, (int)(oY + (size * 2)));
+			vertex((int)(oX - (size * 3)), (int)(oY + ( size * 3)));
+			vertex((int)(oX - (size * 2)), (int)oY);
+			vertex((int)(oX - (size*2)), (int)(oY - (size*2)));
+			vertex((int)oX,(int)(oY - (size*2)));
+			vertex((int)(oX + (size * 2)), (int)oY);
 		endShape();
+		*/
 	}
 	void move()
 	{
