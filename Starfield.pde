@@ -1,62 +1,66 @@
-NormalParticle bob;
-NormalParticle [] jim;
+Particle [] bob;
 void setup()
 {
 	size(600,600);
-	bob = new NormalParticle();
-	jim  = new NormalParticle[500];
-	for ( int i = 0; i < 500; i++)
+	bob  = new Particle[1000];
+	for ( int i = 0; i < bob.length; i++)
 	{
-		jim[i] = new NormalParticle();
+		if (i%5 == 0)
+			bob[i] = new JumboParticle();
+		else if (i%51 == 0)
+		{
+			bob[i] = new OddballParticle();	
+		}
+		else
+		{
+			bob[i] = new NormalParticle();	
+		}
 	}
 }
 void draw()
 {
 	background(0);
-	for (int i = 0; i < 500; i++)
+	for (int i = 0; i < bob.length; i++)
 	{
-		jim[i].move();
-		jim[i].show();
+		bob[i].move();
+		bob[i].show();
 	}
-	bob.move();
-	bob.show();
-
 }
-class NormalParticle
+interface Particle
 {
-	int size, pColor;
+	public void move();
+	public void show();
+}
+class NormalParticle implements Particle
+{
+	int size;
 	double pX, pY, pAngle, pSpeed;
 	NormalParticle()
 	{
 		size = 2;
-		pColor = color((int)(Math.random() * 155) + 100);
 		pX = 300;
 		pY = 300;
 		pAngle = Math.PI * 2 * Math.random();
 		pSpeed = Math.random()*1/2;
 	}
-	void show()
+	 public void show()
 	{
-		fill(pColor);
+		fill(color((int)(Math.random() * 155) + 100));
 		ellipse((float)pX, (float)pY, size, size);
 	}
-	void move()
+	 public void move()
 	{
 		pX = pX + Math.sin(pAngle) * pSpeed;
 		pY = pY + Math.cos(pAngle) * pSpeed;
 	}
 }
-interface Particle
-{
-
-}
-class OddballParticle //uses an interface
+class OddballParticle implements Particle //uses an interface
 {
 	int size, oColor;
 	double oAngle, oSpeed, oX, oY;
 	OddballParticle()
 	{
-		size = 2;
+		size = 10;
 		oColor = color(141, 84, 20);
 		oAngle = Math.PI * 2 * Math.random();
 		oSpeed = Math.random() * 1/2;
@@ -65,30 +69,20 @@ class OddballParticle //uses an interface
 	}
 	void show()
 	{
-		/*
-		beginShape();
-			vertex((int)oX + (size * 2), (int)oY);
-			vetex((int)(oX + (size * 1)), (int)(oY + ( size * 1)));
-			vertex((int)oX, (int)(oY + (size * 2)));
-			vertex((int)(oX - (size * 3)), (int)(oY + ( size * 3)));
-			vertex((int)(oX - (size * 2)), (int)oY);
-			vertex((int)(oX - (size*2)), (int)(oY - (size*2)));
-			vertex((int)oX,(int)(oY - (size*2)));
-			vertex((int)(oX + (size * 2)), (int)oY);
-		endShape();
-		*/
+		fill(oColor);
+		triangle((float)oX, (float)oY, (float)(oX + size),(float)(oY + size), (float)(oX - size),(float)(oY - size));
 	}
 	void move()
 	{
-
-	}
-	void grow()
-	{
-
+		oX = oX + Math.sin(oAngle) * oSpeed;
+		oY = oY + Math.cos(oAngle) * oSpeed;
 	}
 }
-class JumboParticle //uses inheritance
+class JumboParticle extends NormalParticle //uses inheritance
 {
-	//your code here
+	JumboParticle()
+	{
+		size = 5;
+	}
 }
 
