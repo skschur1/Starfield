@@ -1,29 +1,31 @@
-Particle [] bob;
+Particle [] satelites;
 void setup()
 {
 	size(600,600);
-	bob  = new Particle[1000];
-	for ( int i = 0; i < bob.length; i++)
+	satelites  = new Particle[1000];
+	for ( int i = 0; i < satelites.length; i++)
 	{
 		if (i%5 == 0)
-			bob[i] = new JumboParticle();
-		else if (i%51 == 0)
 		{
-			bob[i] = new OddballParticle();	
+			satelites[i] = new JumboParticle();
+		}
+		else if (i%51== 0)
+		{
+			satelites[i] = new OddballParticle();	
 		}
 		else
 		{
-			bob[i] = new NormalParticle();	
+			satelites[i] = new NormalParticle();	
 		}
 	}
 }
 void draw()
 {
 	background(0);
-	for (int i = 0; i < bob.length; i++)
+	for (int i = 0; i < satelites.length; i++)
 	{
-		bob[i].move();
-		bob[i].show();
+		satelites[i].move();
+		satelites[i].show();
 	}
 }
 interface Particle
@@ -56,23 +58,20 @@ class NormalParticle implements Particle
 }
 class OddballParticle implements Particle //uses an interface
 {
-	int size, oColor;
 	double oAngle, oSpeed, oX, oY;
 	OddballParticle()
 	{
-		size = 10;
-		oColor = color(141, 84, 20);
 		oAngle = Math.PI * 2 * Math.random();
 		oSpeed = Math.random() * 1/2;
 		oX = 300;
 		oY = 300;
 	}
-	void show()
+	public void show()
 	{
-		fill(oColor);
-		triangle((float)oX, (float)oY, (float)(oX + size),(float)(oY + size), (float)(oX - size),(float)(oY - size));
+		fill(255,0,0);
+		triangle((float)oX,(float)oY,(float) oX - 3,(float) oY + 6, (float) oX + 3, (float) oY + 6);
 	}
-	void move()
+	public void move()
 	{
 		oX = oX + Math.sin(oAngle) * oSpeed;
 		oY = oY + Math.cos(oAngle) * oSpeed;
